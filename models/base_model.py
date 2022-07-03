@@ -34,7 +34,7 @@ class BaseModel:
             storage.new(self)
 
     def __str__(self):
-        """Returns a nice print of the base model"""
+        """Returns a good print of the base model"""
         return "[{}] ({}) {}".format(
             type(self).__name__, self.id, self.__dict__)
 
