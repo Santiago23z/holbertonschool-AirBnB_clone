@@ -7,7 +7,7 @@ for airbnb clone project - the console
 
 import uuid
 import datetime
-import model
+import models
 
 class BaseModel:
     """Class that define all common attributes/methods
