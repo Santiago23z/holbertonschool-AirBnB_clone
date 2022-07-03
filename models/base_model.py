@@ -6,7 +6,7 @@ for airbnb clone project - the console
 """
 
 import uuid
-import datetime
+from datetime import datetime
 import models
 
 class BaseModel:
@@ -35,8 +35,8 @@ class BaseModel:
 
     def save(self):
         """Saves the date of update"""
-        self.updated_at = datetime.datetime.now()
-        models.storage.save(self)
+        self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """Returns a new dict"""
