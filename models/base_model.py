@@ -7,7 +7,7 @@ for airbnb clone project - the console
 
 import uuid
 import datetime
-from models import storage
+import model
 
 class BaseModel:
     """Class that define all common attributes/methods
@@ -18,20 +18,15 @@ class BaseModel:
         """initialities base model"""
         if kwargs:
             for key, value in kwargs.items():
-                if key == 'created_at':
-                    self.created_at = datetime.datetime.strptime(
-                        value, '%Y-%m-%dT%H:%M:%S.%f')
-                elif key == 'updated_at':
-                    self.updated_at = datetime.datetime.strptime(
-                        value, '%Y-%m-%dT%H:%M:%S.%f')
-                else:
-                    if key != '__class__':
+                if key == 'created_at' or key == 'updated_at':
+                        value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f')
+                if key != '__class__':
                         setattr(self, key, value)
         else:
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.datetime.now()
-            self.updated_at = datetime.datetime.now()
-            storage.new(self)
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         """Returns a good print of the base model"""
@@ -41,7 +36,7 @@ class BaseModel:
     def save(self):
         """Saves the date of update"""
         self.updated_at = datetime.datetime.now()
-        storage.save(self)
+        models.storage.save(self)
 
     def to_dict(self):
         """Returns a new dict"""
@@ -49,4 +44,4 @@ class BaseModel:
         inst_dict['__class__'] = self.__class__.__name__
         inst_dict['created_at'] = self.created_at.isoformat()
         inst_dict['updated_at'] = self.updated_at.isoformat()
-        return inst_dict        
+        return inst_dict
