@@ -59,7 +59,7 @@ class HBNBCommand(cmd.Cmd):
                 except AttributeError:
                     cast = type(inputs[3])
                 #open to anny attr, even those wich are not defined
-                value = cast cast(inputs[3])
+                value = cast(inputs[3])
                 setattr(storage.all()[obj_key], attribute, value)
                 storage.all()[obj_key].save()
     
