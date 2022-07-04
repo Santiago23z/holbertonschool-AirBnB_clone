@@ -4,6 +4,7 @@ data and storage management for the console AirBnB clone project"""
 
 import json
 from os import path
+from models import review
 from models.base_model import BaseModel
 from models.user import User
 from models.user import User
@@ -24,7 +25,12 @@ class FileStorage:
     __objects = {}
     __classes = {
         'BaseModel': BaseModel, 
-        'User': User
+        'User': User, 
+        'Place': Place,
+        'State': State,
+        'City': City,
+        'Amenity': Amenity,
+        'Review': Review
     }
 
     def all(self):
