@@ -125,9 +125,10 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def emptyline(self):
-        """EOF command to quit and exit the program by eof (CTRL+D)
+        """this command replaces default emptyline(), with an empty line
+        + enter shouldn't execute anything
         """
-        return True
+        return False
         
     def count(self, arg):
         """Count command to retrieve the number of instances of a class
