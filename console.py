@@ -63,4 +63,62 @@ class HBNBCommand(cmd.Cmd):
         """show command to print the string representation of an isntance
         based on the class name and id.
         Usage: show <class name> <id>"""
-        inputs = 
+        inputs = arg.split()
+        if arg == "" or arg is None:
+            print("** class name missing **")
+        elif inputs[0] not in HBNBCommand.classes:
+            print("** class doesn´t exist **")
+        elif len(inputs) < 2:
+            print("** instance id missing **")
+        else:
+            obj_key = "{}.{}".format(inputs[0], inputs[1])
+            if obj_key not in storage.all():
+                print("** no instance found **")
+            else:
+                print(storage.all()[obj_key])
+                
+    def do_destroy(self, arg):
+        """Destroy command to delete an isntance based on the class name and id.
+        Usage: destroy <class name> <id>"""
+        inputs = arg.split()
+        if arg == "" or arg is None:
+            print("** class name missing **")
+        elif inputs[0] not in HBNBCommand.classes:
+            print("** class doesn´t exist **")
+        elif len(inputs) < 2:
+            print("** instance id missing **")
+        else:
+            obj_key = "{}.{}".format(inputs[0], inputs[1])
+            if obj_key not in storage.all():
+                print("** no instance found **")
+            else:
+                del storage.all()[obj_key]
+                storage.save()
+                
+    def do_all(self, arg):
+        """All commands to print all string representation af alla instances 
+        based or not on the class name.
+        Usage: all <class name (optional)>
+        E.g: all       -------Prints all instances
+             all user  -------Prints user instances"""
+        inputs = arg.split()
+        objs = storage.all()
+        if not arg:
+            print([str(obj) for obj in objs.values()])
+        else:
+            if inputs[0] in HBNBCommand.classes:
+                print([str(obj) for obj in objs.values()
+                        if type(obj).__name__ == arg])
+            else:
+                print("** class doesn´t exist **")
+                
+    def do_quit(self, arg):
+        """quit command to exit the program"""
+        return True
+        
+    def do_EOF(self, arg):
+        """EOF command to quit and exit the program by EOF (CTR+D)"""
+        return True
+        
+    def count(self, arg):
+    
