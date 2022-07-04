@@ -1,7 +1,11 @@
 #!/usr/bin/python3
 """program that contains the entry point of the command interpreter"""
 
+from ast import arguments
+from calendar import c
 import cmd
+from inspect import Attribute
+from pickle import TRUE
 import shlex
 import re
 import json
@@ -30,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, arg):
         """update command to update an isntance based on the class name
         and id by adding or updating attribute
-        Usage: update <class name> <id> <attribute name> "<attribute value>""""
+        Usage: update <class name> <id> <attribute name> "<attribute value>"""
         inputs = shlex.split(arg)
         if arg == "" or arg is None:
             print("** class name missing **")
@@ -119,6 +123,90 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, arg):
         """EOF command to quit and exit the program by EOF (CTR+D)"""
         return True
+
+    def emptyline(self):
+        """EOF command to quit and exit the program by eof (CTRL+D)
+        """
+        return True
         
     def count(self, arg):
+        """Count command to retrieve the number of instances of a class
+        usage: <class name>.count()"""
+        if arg in HBNBCommand.classes:
+            c = 0
+            for obj in storage.all().values():
+                c += 1 if obj.__class__.__name__ == arg else 0
+                print(c)
+        else:
+            print("** class doesn't exits **")
     
+    def default(self, arg):
+        """Executes line when it does not match any class command
+        Arg <string>: <class name>.command("optional parameters")
+        E.g. User.count() ----- <cls>.count() Must be used without parameters
+             User.all() ------ <cls>.all() Mut be used witout parameters
+             User.destroy("246c227a-d5c1-403d-9bc7-6a47bb9f0f68")
+             User.update("38f22813-2753-4d42-b37c-67a17f1e4f88",
+                                        {'first_name': "Jhon", "age": 89}"""
+        
+        met_rgx = re.search(r"^(\w+)\.(\w+)\(\)$", arg)
+        arg_rgx = re.search(r"^(\w+)\.(\w+)\(([^)]+)\)$", arg)
+        dic_rgx = re.search(r"^(\w+)\.(\w+)\(([^)]+)\, \s+(\{[^)]+\})\)$", arg)
+
+        if met_rgx:
+            class_name = met_rgx.group(1)
+            command = met_rgx.group(2)
+            if command == 'all':
+                self.do_all(class_name)
+            elif command == 'count':
+                self.count(class_name)
+        
+        elif dic_rgx:
+            command = dic_rgx.group(2)
+            class_name = dic_rgx.group(1)
+            obj_id = dic_rgx.group(3).replace('"', '')
+
+            if class_name not in HBNBCommand.classes:
+                print("** class doesn't exist **")
+                return
+            if "{}{}".format(class_name, obj_id) not in storage.all():
+                print("** no instance found **")
+                return
+            
+            try:
+                obj_dic = json.loads(dic_rgx.group(4).replace("'", '"'))
+            except Exception:
+                print("** value missing **")
+                return
+            
+            if command == 'update':
+                for key, value in obj_dic.items():
+                    line = '{} {} {} {} "{}"'.format(
+                            command, class_name, obj_id, key, str(value))
+                    self.onecmd(line)
+            else:
+                print("** Check input **")
+            
+        elif arg_rgx:
+            command = arg_rgx.group(2)
+            class_name = arg_rgx.group(1)
+            arguments = arg_rgx.group(3).replace(',', '')
+            args_ls = shlex.split(arguments)
+
+            if command == 'update':
+                try:
+                    attribute = args_ls[1]
+                    value = args_ls[2]
+                except Exception:
+                    print("** Attribute or value missing **")
+                    return
+                line = '{} {} {} "{}"'.format(
+                                command, class_name, args_ls[0], attribute, str(value))
+
+            else:
+                line = '{} {} {} {}' "{}".format(command, class_name, args_ls[0])
+            
+            self.onecmd(line)
+
+if __name__ == '__main__':
+    HBNBCommand().cmdloop()
