@@ -7,7 +7,6 @@ from os import path
 from models import review
 from models.base_model import BaseModel
 from models.user import User
-from models.user import User
 from models.place import Place
 from models.state import State
 from models.city import City
