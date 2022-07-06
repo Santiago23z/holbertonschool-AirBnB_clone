@@ -39,24 +39,24 @@ class HBNBCommand(cmd.Cmd):
         and id by adding or updating attribute
         Usage: update <class name> <id> <attribute name> "<attribute value>"""
         inputs = shlex.split(arg)
-        if arg == "" or arg is None:
+        if arg == "" or arg is None or len(arg) == 0:
             print("** class name missing **")
         elif inputs[0] not in self.classes:
-            print("** instance doesn´t exist **")
-        elif len(inputs) < 2:
-            print("** instance id is missing **")
-        elif len(inputs) < 3:
-            print("** attribute name missing **")
-        elif len(inputs) < 4:
-            print("** value missing **")
+            print("** class doesn´t exist **")
+        elif len(inputs) == 1:
+            print("** instance id missing **")
         else:
             class_name = inputs[0]
             obj_id = inputs[1]
-            attribute = inputs[2]
             obj_key = "{}.{}".format(class_name, obj_id)
             if obj_key not in storage.all():
                 print("** no instance found **")
+            elif len(inputs) < 3:
+                print("** attribute name missing **")
+            elif len(inputs) < 4:
+                print("** value missing **")
             else:
+                attribute = inputs[2]
                 value = self.analyze(inputs[3])
                 setattr(storage.all()[obj_key], attribute, value)
                 storage.all()[obj_key].save()
