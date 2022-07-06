@@ -3,7 +3,6 @@
 """
 
 
-
 import json
 import unittest
 from models.base_model import BaseModel
