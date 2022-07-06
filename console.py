@@ -28,7 +28,7 @@ class HBNBCommand(cmd.Cmd):
         if arg == ""or arg is None:
             print("** class name missing **")
         elif arg not in self.classes:
-            print ("** class doesn´t exist **")
+            print ("** class doesn't exist **")
         else:
             new = eval(arg)()
             new.save()
@@ -42,7 +42,7 @@ class HBNBCommand(cmd.Cmd):
         if arg == "" or arg is None or len(arg) == 0:
             print("** class name missing **")
         elif inputs[0] not in self.classes:
-            print("** class doesn´t exist **")
+            print("** class doesn't exist **")
         elif len(inputs) == 1:
             print("** instance id missing **")
         else:
@@ -77,7 +77,7 @@ class HBNBCommand(cmd.Cmd):
         if arg == "" or arg is None:
             print("** class name missing **")
         elif inputs[0] not in HBNBCommand.classes:
-            print("** class doesn´t exist **")
+            print("** class doesn't exist **")
         elif len(inputs) < 2:
             print("** instance id missing **")
         else:
@@ -94,7 +94,7 @@ class HBNBCommand(cmd.Cmd):
         if arg == "" or arg is None:
             print("** class name missing **")
         elif inputs[0] not in HBNBCommand.classes:
-            print("** class doesn´t exist **")
+            print("** class doesn't exist **")
         elif len(inputs) < 2:
             print("** instance id missing **")
         else:
@@ -120,7 +120,7 @@ class HBNBCommand(cmd.Cmd):
                 print([str(obj) for obj in objs.values()
                         if type(obj).__name__ == arg])
             else:
-                print("** class doesn´t exist **")
+                print("** class doesn't exist **")
                 
     def do_quit(self, arg):
         """quit command to exit the program"""
