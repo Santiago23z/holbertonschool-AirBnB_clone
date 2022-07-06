@@ -17,9 +17,11 @@ from models.engine.file_storage import FileStorage
 from models import storage
 import os
 
+
 class TestFileStorage(unittest.TestCase):
     """
     """
+
     def setUp(self):
         """Method setup"""
         pass
@@ -29,7 +31,7 @@ class TestFileStorage(unittest.TestCase):
         FileStorage._FileStorage__objects = {}
         if os.path.exists(FileStorage._FileStorage__file_path):
             os.remove(FileStorage._FileStorage__file_path)
-        
+
     def tearDown(self):
         """"""
         self.resetStorage()
@@ -82,7 +84,7 @@ class TestFileStorage(unittest.TestCase):
     def test_all_review(self):
         """Tests all() method for Review."""
         self.test_all("Review")
-    
+
     def test_all_mult(self, line):
         """"""
         self.resetStorage()
@@ -158,7 +160,7 @@ class TestFileStorage(unittest.TestCase):
     def test_new_review(self):
         """Tests new() method for Review."""
         self.test_new("Review")
-        
+
     def test_save(self, line):
         """"""
         self.resetStorage()
@@ -168,11 +170,12 @@ class TestFileStorage(unittest.TestCase):
         storage.save()
         self.assertTrue(os.path.exists(FileStorage._FileStorage__file_path))
         new_dict = {key: new_obj.to_dict()}
-        with open(FileStorage._FileStorage__file_path, "r", encoding="utf-8") as f:
+        with open(FileStorage._FileStorage__file_path,
+                  "r", encoding="utf-8") as f:
             self.assertEqual(len(f.read()), len(json.dumps(new_dict)))
             f.seek(0)
             self.assertEqual(json.load(f), new_dict)
-        
+
     def test_save_base_model(self):
         """Tests save() method for BaseModel."""
         self.test_save("BaseModel")
@@ -200,7 +203,7 @@ class TestFileStorage(unittest.TestCase):
     def test_save_review(self):
         """Tests save() method for Review."""
         self.test_save("Review")
-    
+
     def test_reload(self, line):
         """"""
         self.resetStorage()
@@ -220,7 +223,6 @@ class TestFileStorage(unittest.TestCase):
         """Tests reload() method for User."""
         self.test_reload("User")
 
- 
     def test_reload_state(self):
         """Tests reload() method for State."""
         self.test_reload("State")
@@ -229,11 +231,9 @@ class TestFileStorage(unittest.TestCase):
         """Tests reload() method for City."""
         self.test_reload("City")
 
- 
     def test_reload_amenity(self):
         """Tests reload() method for Amenity."""
         self.test_reload("Amenity")
-    
 
     def test_reload_place(self):
         """Tests reload() method for Place."""
@@ -242,6 +242,7 @@ class TestFileStorage(unittest.TestCase):
     def test_reload_review(self):
         """Tests reload() method for Review."""
         self.test_reload("Review")
-    
+
+
 if __name__ == "__main__":
     unittest.main()
