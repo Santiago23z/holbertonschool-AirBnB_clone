@@ -56,8 +56,6 @@ $
 |Command| Description |
 |--|--|
 | **create** | Creates a new instance based on the [class name], saves it (to a JSON file) and prints the [ID]. `$ create BaseModel` |
-| **show** | Prints the string representation of an instance based on the [class name] and [ID]. `$ show BaseModel 1234-1234-1234` |
-| **destroy** | Deletes an instance based on the [class name] and [ID] (saves changes into a JSON file). `$ destroy BaseModel 1234-1234-1234` |
 | **all** | Prints all string representation of all instances based or not on the [class name]. `$ all BaseModel` or `$ all` | 
 | **update** | Updates an instance based on the [class name] and [ID] by adding or updating attribute (saves changes into a JSON file). `$ update BaseModel 1234-1234-1234 email "airbnb@holbertonschool.com"`|
 | **EOF** | Quits the program by EOF (CTRL+D) |
@@ -68,9 +66,6 @@ $
 |Command| Example |
 |--|--|
 |[class name].all()| BaseModel.all() |
-|[class name].count()| BaseModel.count() |
-|[class name].show()| BaseModel.show() |
-|[class name].destroy()| BaseModel.destroy() |
 
 ## Project Learning Objetives
 * How to create a Python package
