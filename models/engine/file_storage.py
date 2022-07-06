@@ -19,12 +19,12 @@ class FileStorage:
     __file_path <string>: path to the JSON file
     __objects <dictionary>: stores all objects by '<class name>.id'
     __classes <dictionary>: stores all available classes for AirBnB project"""
-    
+
     __file_path = "file.json"
     __objects = {}
     __classes = {
-        'BaseModel': BaseModel, 
-        'User': User, 
+        'BaseModel': BaseModel,
+        'User': User,
         'Place': Place,
         'State': State,
         'City': City,
@@ -47,10 +47,10 @@ class FileStorage:
         dict_to_json = {k: v.to_dict() for k, v in dict_to_json.items()}
         with open(FileStorage.__file_path, 'w', encoding='utf-8') as jfile:
             json.dump(dict_to_json, jfile)
-            
+
     def reload(self):
         """Desearlizes the JSON file to '__objects':
-        checks existence of the JSON file, reads data and instantiates every 
+        checks existence of the JSON file, reads data and instantiates every
         dictionary representation according the ['__class__'] name"""
         file = FileStorage.__file_path
         if path.exists(file):
