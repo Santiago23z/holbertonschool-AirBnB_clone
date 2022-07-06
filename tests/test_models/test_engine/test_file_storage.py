@@ -3,14 +3,8 @@
 """
 
 
-from cgitb import strong
-from curses import keyname
-from importlib.resources import path
+
 import json
-from opcode import hasconst
-from operator import ne
-from turtle import onclick
-from typing_extensions import Self
 import unittest
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
