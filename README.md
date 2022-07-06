@@ -1,4 +1,4 @@
-[link](https://i.imgur.com/X8EA2Zv.png)
+![link](https://i.imgur.com/X8EA2Zv.png)
 
 ## Description
 This is the first step towards building your first full web application: the AirBnB clone. This first step is very important because you will use what you build during this project with all other following projects: HTML/CSS templating, database storage, API, front-end integration.
@@ -83,3 +83,10 @@ $
 * What is *args and how to use it
 * What is **kwargs and how to use it
 * How to handle named arguments in a function
+
+### Resources
+* [Python cmd Module](https://docs.python.org/3.4/library/cmd.html)
+* [cmd - Create line-oriented command processors](https://pymotw.com/2/cmd/)
+* [Unit testing framework](https://docs.python.org/3.4/library/unittest.html#module-unittest)
+* [A simple Python unittest](https://www.pythonsheets.com/notes/python-tests.html)
+* [How To Use *args and **kwargs in Python 3](https://www.digitalocean.com/community/tutorials/how-to-use-args-and-kwargs-in-python-3)
