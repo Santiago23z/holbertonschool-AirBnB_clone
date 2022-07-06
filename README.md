@@ -90,3 +90,12 @@ $
 * [Unit testing framework](https://docs.python.org/3.4/library/unittest.html#module-unittest)
 * [A simple Python unittest](https://www.pythonsheets.com/notes/python-tests.html)
 * [How To Use *args and **kwargs in Python 3](https://www.digitalocean.com/community/tutorials/how-to-use-args-and-kwargs-in-python-3)
+
+# Authors :)
+
+***Carlos Berrio*** @CarlosBerro6
+ <a href="https://twitter.com/CarlosBerro6" rel= "nofollow"> <img width="18px" align="center"
+src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/twitter.svg" style="max-width: 100%;"> <a href="https://github.com/carlosberrio"> <img width="18px" align="center" src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/github.svg" style="max-width: 100%;"></a>
+
+***Santiago Zapata*** @Santiag72319908 <a href="https://twitter.com/Santiag72319908" rel= "nofollow"> <img width="18px" align="center"
+src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/twitter.svg" style="max-width: 100%;"> <a href="https://github.com/Santiago23z"> <img width="18px" align="center" src="https://raw.githubusercontent.com/rahulbanerjee26/githubAboutMeGenerator/main/icons/github.svg" style="max-width: 100%;"></a>
