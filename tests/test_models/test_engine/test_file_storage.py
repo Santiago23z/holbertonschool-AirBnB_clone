@@ -57,31 +57,31 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(key in storage.all())
         self.assertEqual(storage.all()[key], object)
 
-    def prueba_all__base_model(self):
+    def test_all__base_model(self):
         """Tests all() method for BaseModel."""
         self.prueba_all_("BaseModel")
 
-    def prueba_all__user(self):
+    def test_all__user(self):
         """Tests all() method for User."""
         self.prueba_all_("User")
 
-    def prueba_all__state(self):
+    def test_all__state(self):
         """Tests all() method for State."""
         self.prueba_all_("State")
 
-    def prueba_all__city(self):
+    def test_all__city(self):
         """Tests all() method for City."""
         self.prueba_all_("City")
 
-    def prueba_all__amenity(self):
+    def test_all__amenity(self):
         """Tests all() method for Amenity."""
         self.prueba_all_("Amenity")
 
-    def prueba_all__place(self):
+    def test_all__place(self):
         """Tests all() method for Place."""
         self.prueba_all_("Place")
 
-    def prueba_all__review(self):
+    def test_all__review(self):
         """Tests all() method for Review."""
         self.prueba_all_("Review")
 
@@ -96,31 +96,31 @@ class TestFileStorage(unittest.TestCase):
             self.assertTrue(key in storage.all())
             self.assertEqual(storage.all()[key], s)
 
-    def prueba_alliple_base_model(self):
+    def test_alliple_base_model(self):
         """Tests all() method with many objects."""
         self.prueba_all("BaseModel")
 
-    def prueba_alliple_user(self):
+    def test_alliple_user(self):
         """Tests all_multiple() method for User."""
         self.prueba_all("User")
 
-    def prueba_alliple_state(self):
+    def test_alliple_state(self):
         """Tests all_multiple() method for State."""
         self.prueba_all("State")
 
-    def prueba_alliple_city(self):
+    def test_alliple_city(self):
         """Tests all_multiple() method for City."""
         self.prueba_all("City")
 
-    def prueba_alliple_amenity(self):
+    def test_alliple_amenity(self):
         """Tests all_multiple() method for Amenity."""
         self.prueba_all("Amenity")
 
-    def prueba_alliple_place(self):
+    def test_alliple_place(self):
         """Tests all_multiple() method for Place."""
         self.prueba_all("Place")
 
-    def prueba_alliple_review(self):
+    def test_alliple_review(self):
         """Tests all_multiple() method for Review."""
         self.prueba_all("Review")
 
@@ -133,31 +133,31 @@ class TestFileStorage(unittest.TestCase):
         self.assertTrue(key in FileStorage._FileStorage__objects)
         self.assertEqual(FileStorage._FileStorage__objects[key], new)
 
-    def Prueba_new_base_model(self):
+    def test_new_base_model(self):
         """Tests new() method for BaseModel."""
         self.Prueba_new("BaseModel")
 
-    def Prueba_new_user(self):
+    def test_new_user(self):
         """Tests new() method for User."""
         self.Prueba_new("User")
 
-    def Prueba_new_state(self):
+    def test_new_state(self):
         """Tests new() method for State."""
         self.Prueba_new("State")
 
-    def Prueba_new_city(self):
+    def test_new_city(self):
         """Tests new() method for City."""
         self.Prueba_new("City")
 
-    def Prueba_new_amenity(self):
+    def test_new_amenity(self):
         """Tests new() method for Amenity."""
         self.Prueba_new("Amenity")
 
-    def Prueba_new_place(self):
+    def test_new_place(self):
         """Tests new() method for Place."""
         self.Prueba_new("Place")
 
-    def Prueba_new_review(self):
+    def test_new_review(self):
         """Tests new() method for Review."""
         self.Prueba_new("Review")
 
@@ -176,31 +176,31 @@ class TestFileStorage(unittest.TestCase):
             f.seek(0)
             self.assertEqual(json.load(f), new_dict)
 
-    def prueba_save_base_model(self):
+    def test_save_base_model(self):
         """Tests save() method for BaseModel."""
         self.prueba_save("BaseModel")
 
-    def prueba_save_user(self):
+    def test_save_user(self):
         """Tests save() method for User."""
         self.prueba_save("User")
 
-    def prueba_save_state(self):
+    def test_save_state(self):
         """Tests save() method for State."""
         self.prueba_save("State")
 
-    def prueba_save_city(self):
+    def test_save_city(self):
         """Tests save() method for City."""
         self.prueba_save("City")
 
-    def prueba_save_amenity(self):
+    def test_save_amenity(self):
         """Tests save() method for Amenity."""
         self.prueba_save("Amenity")
 
-    def prueba_save_place(self):
+    def test_save_place(self):
         """Tests save() method for Place."""
         self.prueba_save("Place")
 
-    def prueba_save_review(self):
+    def test_save_review(self):
         """Tests save() method for Review."""
         self.prueba_save("Review")
 
@@ -215,31 +215,31 @@ class TestFileStorage(unittest.TestCase):
         storage.reload()
         self.assertEqual(new_reload.dict(), storage.all()[key].to_dict())
 
-    def prueba_reload_base_model(self):
+    def test_reload_base_model(self):
         """Tests reload() method for BaseModel."""
         self.prueba_reload("BaseModel")
 
-    def prueba_reload_user(self):
+    def test_reload_user(self):
         """Tests reload() method for User."""
         self.prueba_reload("User")
 
-    def prueba_reload_state(self):
+    def test_reload_state(self):
         """Tests reload() method for State."""
         self.prueba_reload("State")
 
-    def prueba_reload_city(self):
+    def test_reload_city(self):
         """Tests reload() method for City."""
         self.prueba_reload("City")
 
-    def prueba_reload_amenity(self):
+    def test_reload_amenity(self):
         """Tests reload() method for Amenity."""
         self.prueba_reload("Amenity")
 
-    def prueba_reload_place(self):
+    def test_reload_place(self):
         """Tests reload() method for Place."""
         self.prueba_reload("Place")
 
-    def prueba_reload_review(self):
+    def test_reload_review(self):
         """Tests reload() method for Review."""
         self.prueba_reload("Review")
 
