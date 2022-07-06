@@ -4,7 +4,6 @@ Testing User
 """
 
 from datetime import datetime
-from tokenize import Name
 from models.user import User
 from models.base_model import BaseModel
 import unittest
