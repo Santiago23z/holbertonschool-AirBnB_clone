@@ -1,12 +1,15 @@
 #!/usr/bin/python3
 """program that contains the entry point of the command interpreter"""
 
-from ast import arguments
-from calendar import c
-import cmd
-from inspect import Attribute
-from pickle import TRUE
+from models.base_model import BaseModel
+from models.user import User
+from models.city import City
+from models.review import Review
+from models.amenity import Amenity
+from models.state import State
+from models.place import Place
 import shlex
+import cmd
 import re
 import json
 from models import storage
@@ -14,7 +17,7 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """command interpreter implementation"""
     prompt = '(hbnb) '
-    classes = storage.class_dict()
+    classes = ['BaseModel', 'User', 'City', 'State', 'Place', 'Amenity', 'Review']
     
     def do_create(self, arg):
         """create command to create a new instance according with
@@ -24,10 +27,10 @@ class HBNBCommand(cmd.Cmd):
         Classes: [BaseModel, User, Place, State, City, Amenity, Review]"""
         if arg == ""or arg is None:
             print("** class name missing **")
-        elif arg not in HBNBCommand.classes:
+        elif arg not in self.classes:
             print ("** class does´t exist **")
         else:
-            new = HBNBCommand.classes[arg]()
+            new = eval(arg)()
             new.save()
             print(new.id)
             
@@ -38,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
         inputs = shlex.split(arg)
         if arg == "" or arg is None:
             print("** class name missing **")
-        elif input [0] not in HBNBCommand.classes:
+        elif inputs[0] not in self.classes:
             print("** instance doesn´t exist **")
         elif len(inputs) < 2:
             print("** instance id is missing **")
@@ -54,20 +57,23 @@ class HBNBCommand(cmd.Cmd):
             if obj_key not in storage.all():
                 print("** no instance found **")
             else:
-                try:
-                    cast = type(getattr(storage.all()[obj_key], attribute))
-                except AttributeError:
-                    cast = type(inputs[3])
-                #open to anny attr, even those wich are not defined
-                value = cast(inputs[3])
+                value = self.analyze(inputs[3])
                 setattr(storage.all()[obj_key], attribute, value)
                 storage.all()[obj_key].save()
+    
+    def analyze(self, line):
+        """verifies if line is float or int value and if so, change the type of line"""
+        if line.isdigit():
+            return int(line)
+        if line.replace(".", "", 1).isdigit():
+            return float(line)
+        return line
     
     def do_show(self, arg):
         """show command to print the string representation of an isntance
         based on the class name and id.
         Usage: show <class name> <id>"""
-        inputs = arg.split()
+        inputs = arg.split(" ")
         if arg == "" or arg is None:
             print("** class name missing **")
         elif inputs[0] not in HBNBCommand.classes:
@@ -84,7 +90,7 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, arg):
         """Destroy command to delete an isntance based on the class name and id.
         Usage: destroy <class name> <id>"""
-        inputs = arg.split()
+        inputs = arg.split(" ")
         if arg == "" or arg is None:
             print("** class name missing **")
         elif inputs[0] not in HBNBCommand.classes:
@@ -105,7 +111,7 @@ class HBNBCommand(cmd.Cmd):
         Usage: all <class name (optional)>
         E.g: all       -------Prints all instances
              all user  -------Prints user instances"""
-        inputs = arg.split()
+        inputs = arg.split(" ")
         objs = storage.all()
         if not arg:
             print([str(obj) for obj in objs.values()])
