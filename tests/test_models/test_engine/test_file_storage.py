@@ -92,7 +92,7 @@ class TestFileStorage(unittest.TestCase):
         [storage.new(obj) for obj in dict_objects]
         self.assertEqual(len(dict_objects), len(storage.all()))
         for s in dict_objects:
-            key = f"{type(s).__name__}.{object.s}"
+            key = f"{type(s).__name__}.{s.id}"
             self.assertTrue(key in storage.all())
             self.assertEqual(storage.all()[key], s)
 
@@ -213,7 +213,7 @@ class TestFileStorage(unittest.TestCase):
         key = f"{type(new_reload).__name__}.{new_reload.id}"
         storage.save()
         storage.reload()
-        self.assertEqual(new_reload.dict(), storage.all()[key].to_dict())
+        self.assertEqual(new_reload.to_dict(), storage.all()[key].to_dict())
 
     def test_reload_base_model(self):
         """Tests reload() method for BaseModel."""
