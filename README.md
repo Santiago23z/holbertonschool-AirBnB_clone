@@ -19,7 +19,6 @@ Each task is linked and will help you to:
 * Destroy an object
 
 ## Execution
-## Execution
 The console executes in non-interactive mode:
 ```bash
 $ echo "help" | ./console.py
@@ -68,6 +67,9 @@ $
 |Command| Example |
 |--|--|
 |[class name].all()| BaseModel.all() |
+|[class name].count()| BaseModel.count() |
+|[class name].show()| BaseModel.show() |
+|[class name].destroy()| BaseModel.destroy() |
 
 ## Project Learning Objetives
 * How to create a Python package
